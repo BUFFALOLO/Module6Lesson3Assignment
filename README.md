@@ -1,45 +1,42 @@
 # Module 6 - Lesson 2 Assignment - Building RESTFul APIs
 
-**Managing a Fitness Center Database**
+**Flask-SQLAlchemy Fitness Center Management**
 
-**Objective:** The aim of this assignment is to develop a Flask application to manage a fitness center's database, focusing on interacting with the Members and WorkoutSessionstables. This will enhance your skills in building RESTful APIs using Flask, handling database operations, and implementing CRUD functionalities.
-
-
-*Task 1: Setting Up the Flask Environment and Database Connection*
-- Create a new Flask project and set up a virtual environment
-- Install necessary packages like Flask, Flask-Marshmallow, and MySQL connector.
-- Establish a connection to your MySQL database.
-- Use the Members and WorkoutSessions tables used on previous Lessons
-
-*Expected Outcome:* A Flask project with a connected database and the required tables created.
+**Objective:** The aim of this assignment is to transition from a traditional SQL approach to using Flask-SQLAlchemy for managing a fitness center's database. This assignment will enhance your skills in ORM (Object-Relational Mapping), specifically with Flask-SQLAlchemy, to build RESTful APIs for handling database operations with `Members` and `WorkoutSessions` tables.
 
 
-*Task 2: Implementing CRUD Operations for Members* 
-- Create Flask routes to add, retrieve, update, and delete members from the Memberstable. 
-- Use appropriate HTTP methods: POST for adding, GET for retrieving, PUT for updating, and DELETE for deleting members. 
-- Ensure to handle any errors and return appropriate responses.
+*Task 1: Setting Up Flask with Flask-SQLAlchemy*
+- Initialize a new Flask project and set up a virtual environment. 
+- Install Flask, Flask-SQLAlchemy, and Flask-Marshmallow.
+- Configure Flask-SQLAlchemy to connect to your database.
+- Define `Members` and `WorkoutSessions` models using Flask-SQLAlchemy ORM.
 
-*Expected Outcome:* Functional endpoints for managing members in the database with proper error handling.
+*Expected Outcome:* A Flask project connected to a database using SQLAlchemy with ORM models for `Members` and `WorkoutSessions`.
 
 ```
-@app.route('/members', methods=['POST'])
-def add_member():
-    # Logic to add a member
-    pass
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-@app.route('/members/<int:id>', methods=['GET'])
-def get_member(id):
-    # Logic to retrieve a member
-    pass
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:your_password@localhost/fitness_center_db'
+db = SQLAlchemy(app)
 
-# other routes to update and delete
+class Member(db.Model):
+    # Define fields...
+
+class WorkoutSession(db.Model):
+    # Define fields...
 ```
 
-NOTE: Make sure you have ALL of the CRUD operations implemented, not just the two above.
+*Task 2: Implementing CRUD Operations for Members Using ORM* 
+- Create Flask routes to add, retrieve, update, and delete members using the ORM models.
+- Apply HTTP methods: POST to add, GET to retrieve, PUT to update, and DELETE to delete members.
+- Handle errors effectively and return appropriate JSON responses.
 
+*Expected Outcome:* Functional API endpoints for managing members in the database using Flask-SQLAlchemy, with proper error handling.
 
-*Task 3: Managing Workout Sessions* 
-- Develop routes to schedule, update, and view workout sessions. 
-- Implement a route to retrieve all workout sessions for a specific member.
+*Task 3: Managing Workout Sessions with ORM* 
+ - Develop routes to schedule, update, and view workout sessions using SQLAlchemy.
+ - Implement a route to retrieve all workout sessions for a specific member.
 
-*Expected Outcome:* A comprehensive set of endpoints for scheduling and viewing workout sessions, with the ability to retrieve detailed information about each session. 
+*Expected Outcome:* A comprehensive set of endpoints for scheduling and viewing workout sessions using Flask-SQLAlchemy, with detailed information about each session.
