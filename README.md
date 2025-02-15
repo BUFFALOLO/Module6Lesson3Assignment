@@ -1,4 +1,4 @@
-# Module 6 - Lesson 2 Assignment - Building RESTFul APIs
+# Module 6 - Lesson 3 Assignment - Introduction to Object-relational Mappers (ORM)
 
 **Flask-SQLAlchemy Fitness Center Management**
 
